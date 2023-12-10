@@ -1,0 +1,129 @@
+<app-hearder></app-hearder>
+<div class="menu-main">
+  <app-menu></app-menu>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <div>
+        <h1>Duyệt hội đồng theo đợt</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Khoa</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="btn-group">
+        <h1 style="margin-top: 5px">Chọn bộ môn</h1>
+        <button
+          style="background: #4154f1; margin-left: 15px"
+          type="button"
+          class="btn btn-primary dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          (click)="showDropdown()"
+        >
+          {{ nameSubject }}
+        </button>
+        <div class="dropdown-menu" [ngClass]="{ show: isshowDropdown }">
+          <a
+            class="dropdown-item"
+            (click)="handleDropdownClick(data.subjectId, data.subjectName)"
+            *ngFor="let data of listSubjects"
+            >{{ data.subjectName }}</a
+          >
+        </div>
+      </div>
+      <div class="btn-group" style="margin-left: 200px">
+        <h1 style="margin-top: 5px">Chọn năm học</h1>
+        <button
+          style="background: #4154f1; margin-left: 15px"
+          type="button"
+          class="btn btn-primary dropdown-toggle"
+          (click)="showDropdownMaster()"
+        >
+          {{schoolYear}}
+        </button>
+        <div class="dropdown-menu" [ngClass]="{ show: isshowDropdownMaster }">
+          <a
+            class="dropdown-item"
+            *ngFor="let data of listSchoolYear"
+            (click)="handleDropdownClickSchoolYear(data.schoolYear)"
+            >{{ data.schoolYear }}</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- End Page Title -->
+
+    <div class="content" *ngFor="let data of listCoucils">
+      <div class="action">
+        <h3>{{ data.coucilName }}</h3>
+        <div class="action">
+          <button type="button" style="background-color: #4154F1;" (click)="duyetHoidong(data.coucilId)" class="btn btn-primary">Duyệt</button>
+          <button type="button" class="btn btn-primary" style="background-color: #4154F1;"  (click)="khongDuyetHoidong(data.coucilId)">Không duyệt</button>
+        </div>
+      </div>
+
+      <table class="table table-striped" (click)="handleShowData(data.coucilId)">
+        <thead>
+          <tr>
+            <th scope="col">Mã giảng viên</th>
+            <th scope="col">Tên giảng viên</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Hướng nghiên cứu</th>
+            <th scope="col">Vai trò</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dataTeacher of data.teacherCoucils">
+            <td>{{ dataTeacher.teacher.teacherId }}</td>
+            <td>{{ dataTeacher.teacher.teacherName }}</td>
+            <td>{{ dataTeacher.teacher.email }}</td>
+            <td>{{ dataTeacher.teacher.phone }}</td>
+            <td>{{ dataTeacher.teacher.sex }}</td>
+            <td>{{ dataTeacher.teacher.researchDirection }}</td>
+            <td>{{ dataTeacher.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="popupContainer" class="popup-container" [ngClass]="isShowData ? 'show' : ''">
+        <div class="popup-content">
+          <div class="close-popup paging">
+            <button (click)="handleHidenData()"><i class="bi bi-x"></i></button>
+          </div>
+          <h3 class="text-center">Danh sách sinh viên của hội đồng</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Mã Sinh Viên</th>
+                <th scope="col">Tên Sinh viên</th>
+                <th scope="col">Lớp</th>
+                <th scope="col">Giảng viên hướng dẫn</th>
+                <th scope="col">Giảng viên phản biện</th>
+                <th scope="col">Tên đề tài tiếng Việt</th>
+                <th scope="col">Tên đề tài tiếng Anh</th>
+                <th scope="col">Điểm phản biện</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of listMasterDetails">
+                <td>{{data.mssv}}</td>
+                <td>{{data.studentName}}</td>
+                <td>{{data.studentClass}}</td>
+                <td>{{data.teacherNameHd}}</td>
+                <td>{{data.teacherNamePb}}</td>
+                <td>{{data.titleNameVn}}</td>
+                <td>{{data.titleNameEn}}</td>
+                <td>{{data.scoreArgument}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- End #main -->
+</div>
+<app-footer></app-footer>

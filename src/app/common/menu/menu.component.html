@@ -1,0 +1,111 @@
+<aside id="sidebar" class="sidebar">
+    <ul *ngIf="isDepartment" class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link quanlygiaodetai" [ngClass]="{'collapsed': isCollapsed1}" (click)="toggleCollapse1()" data-bs-target="#quanlygiaodetai">
+          <img src="../../../assets/image/quanlydetai.jpg" alt="quanlydetai"><span>Quản lý giao đề tài</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav quanlygiaodetai " class="nav-content" [ngClass]="{'collapse': isCollapsed1}" data-bs-parent="#sidebar-nav">
+          <li>
+            <a routerLink="/duyetdetai" [ngClass]="{'active': isActive == 'duyetdetai'}">
+              <i class="bi bi-circle"></i><span>Duyệt danh sách giao tên đề tài theo đợt</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/detaidaduyet" [ngClass]="{'active': isActive == 'detaidaduyet'}">
+              <i class="bi bi-circle"></i><span>Danh sách các đợt đã duyệt</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/detaikhongduyet" [ngClass]="{'active': isActive == 'detaikhongduyet'}">
+              <i class="bi bi-circle"></i><span>Danh sách các đợt không đạt</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link quanlygiaodetai" [ngClass]="{'collapsed': isCollapsed2}" (click)="toggleCollapse2()" data-bs-target="#duyethoidong">
+          <img src="../../../assets//image/quanlyhoidong.jpg" alt="quanlyhoidong"><span>Quản lý hội đồng</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="duyethoidong" class="nav-content" [ngClass]="{'collapse': isCollapsed2}" data-bs-parent="#sidebar-nav">
+          <li>
+            <a routerLink="/duyethoidong" [ngClass]="{'active': isActive == 'duyethoidong'}">
+              <i class="bi bi-circle"></i><span>Duyệt hội đồng theo đợt </span>
+            </a>
+            <a routerLink="/hoidongdaduyet" [ngClass]="{'active': isActive == 'hoidongdaduyet'}">
+              <i class="bi bi-circle"></i><span>Hội đồng đã được được duyệt</span>
+            </a>
+            <a routerLink="/hoidongkhongduyet" [ngClass]="{'active': isActive == 'hoidongkhongduyet'}">
+              <i class="bi bi-circle"></i><span>Hội đồng không được duyệt</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link quanlygiaodetai " [ngClass]="{'collapsed': isCollapsed3}" (click)="toggleCollapse3()"  data-bs-target="#gvhdgvpb">
+          <img src="../../../assets//image/dashboard.jpg" alt="quanlyhoidong"><span>Dashboard</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="gvhdgvpb" class="nav-content" [ngClass]="{'collapse': isCollapsed3}" data-bs-parent="#sidebar-nav">
+          <li>
+            <a routerLink="/soluongsinhvienhdpb" [ngClass]="{'active': isActive == 'soluongsinhvienhdpb'}">
+              <i class="bi bi-circle"></i><span>Số lượng Sinh viên HD và PB của từng GV theo từng bộ môn</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/sinhvienbaovethanhcong" [ngClass]="{'active': isActive == 'sinhvienbaovethanhcong'}">
+              <i class="bi bi-circle"></i><span>Thống kê sinh viên bảo vệ thành công</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/bieudo" [ngClass]="{'active': isActive == 'bieudo'}">
+              <i class="bi bi-circle"></i><span>Biểu đồ tỷ lệ sinh viên thực hiện bảo vệ thành công/tổng theo từng bộ môn</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+    </ul>
+
+    <ul *ngIf="isAdmin" class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link quanlygiaodetai " [ngClass]="{'collapsed': isCollapsed4}" (click)="toggleCollapse4()" data-bs-target="#components-nav">
+          <img src="../../../assets//image/quanlyhoidong.jpg" alt="quanlyhoidong"><span>Quản lý bộ môn</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="gvhdgvpb" class="nav-content " [ngClass]="{'collapse': isCollapsed4}" data-bs-parent="#sidebar-nav">
+          <li>
+            <a routerLink="/danhsachbomon"  [ngClass]="{'active': isActive == 'danhsachbomon'}">
+              <i class="bi bi-circle"></i><span>Danh sách bộ môn</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/themsuabomon"  [ngClass]="{'active': isActive == 'themsuabomon'}">
+              <i class="bi bi-circle"></i><span>Thêm bộ môn</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link quanlygiaodetai" [ngClass]="{'collapsed': isCollapsed5}" (click)="toggleCollapse5()"  data-bs-target="#components-nav">
+          <img src="../../../assets//image/qlgv.jpg" alt="quanlyhoidong"><span>Quản lý giảng viên</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="gvhdgvpb" class="nav-content" [ngClass]="{'collapse': isCollapsed5}" data-bs-parent="#sidebar-nav">
+          <li>
+            <a  routerLink="/danhsachgiangvien"  [ngClass]="{'active': isActive == 'danhsachgiangvien'}">
+              <i class="bi bi-circle"></i><span>Danh sách giảng viên</span>
+            </a>
+          </li>
+          <li>
+            <a  routerLink="/themsuagiangvien"  [ngClass]="{'active': isActive == 'themsuagiangvien'}">
+              <i class="bi bi-circle"></i><span>Thêm giảng viên</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a  routerLink="/cauhinh"  [ngClass]="{'active': isActive == 'cauhinh'}" class="nav-link quanlygiaodetai collapsed" data-bs-target="#components-nav">
+          <img src="../../../assets//image/cauhinh.jpg" alt="quanlyhoidong"><span>Cấu hình số lượng tối đa sinh viên HD và PB</span>
+        </a>
+      </li><!-- End Components Nav -->
+    </ul>
+
+  </aside><!-- End Sidebar-->

@@ -1,0 +1,93 @@
+<app-hearder></app-hearder>
+<div class="menu-main">
+  <app-menu></app-menu>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <div>
+        <h1>Duyệt danh sách giao tên đề tài theo đợt</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Khoa</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="btn-group">
+        <h1 style="margin-top: 5px">Chọn bộ môn</h1>
+        <button
+          style="background: #4154f1; margin-left: 15px"
+          type="button"
+          class="btn btn-primary dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          (click)="showDropdown()"
+        >
+          {{ nameSubject }}
+        </button>
+        <div class="dropdown-menu" [ngClass]="{ show: isshowDropdown }">
+          <a
+            class="dropdown-item"
+            (click)="handleDropdownClick(data.subjectId, data.subjectName)"
+            *ngFor="let data of listSubjects"
+            >{{ data.subjectName }}</a
+          >
+        </div>
+      </div>
+      <div class="btn-group" style="margin-left: 200px">
+        <h1 style="margin-top: 5px">Chọn năm học</h1>
+        <button
+          style="background: #4154f1; margin-left: 15px"
+          type="button"
+          class="btn btn-primary dropdown-toggle"
+          (click)="showDropdownMaster()"
+        >
+          {{schoolYear}}
+        </button>
+        <div class="dropdown-menu" [ngClass]="{ show: isshowDropdownMaster }">
+          <a
+            class="dropdown-item"
+            *ngFor="let data of listSchoolYear"
+            (click)="handleDropdownClickSchoolYear(data.schoolYear)"
+            >{{ data.schoolYear }}</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- End Page Title -->
+
+    <div class="content" *ngFor="let data of listMasters">
+      <div class="action">
+        <h3>{{ data.masterName }}</h3>
+        <div class="action">
+          <button type="button" style="background-color: #4154F1;" (click)="duyetDetai(data.masterId)" class="btn btn-primary">Duyệt</button>
+          <button type="button" class="btn btn-primary" style="background-color: #4154F1;"  (click)="khongDuyetDetai(data.masterId)">Không duyệt</button>
+        </div>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Mã Sinh Viên</th>
+            <th scope="col">Tên Sinh viên</th>
+            <th scope="col">Lớp</th>
+            <th scope="col">Giảng viên hướng dẫn</th>
+            <th scope="col">Tên đề tài tiếng Việt</th>
+            <th scope="col">Tên đề tài tiếng Anh</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let masterDetails of data.masterDetailDTOS">
+            <td>{{ masterDetails.mssv }}</td>
+            <td>{{ masterDetails.studentName }}</td>
+            <td>{{ masterDetails.studentClass }}</td>
+            <td>{{ masterDetails.teacherNameHd }}</td>
+            <td>{{ masterDetails.titleNameVn }}</td>
+            <td>{{ masterDetails.titleNameEn }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <!-- End #main -->
+</div>
+<app-footer></app-footer>

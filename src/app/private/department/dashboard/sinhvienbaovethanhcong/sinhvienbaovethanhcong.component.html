@@ -1,0 +1,124 @@
+<app-hearder></app-hearder>
+<div class="menu-main">
+  <app-menu></app-menu>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <div>
+        <h1>Thống kê sinh viên bảo vệ thành công</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Khoa</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="btn-group">
+        <div class="btn-group">
+          <h1 style="margin-top: 5px">Chọn bộ môn</h1>
+          <button
+            style="background: #4154f1; margin-left: 15px"
+            type="button"
+            class="btn btn-primary dropdown-toggle"
+            (click)="showDropdown()"
+          >
+            {{ nameSubject }}
+          </button>
+          <div class="dropdown-menu" [ngClass]="{ show: isshowDropdown }">
+            <a
+              class="dropdown-item"
+              (click)="
+                handleDropdownSubjectClick(data.subjectId, data.subjectName)
+              "
+              *ngFor="let data of listSubjects"
+              >{{ data.subjectName }}</a
+            >
+          </div>
+        </div>
+        <div class="btn-group" style="margin-left: 200px">
+          <h1 style="margin-top: 5px">Chọn đợt</h1>
+          <button
+            style="background: #4154f1; margin-left: 15px"
+            type="button"
+            class="btn btn-primary dropdown-toggle"
+            (click)="showDropdownMaster()"
+          >
+            {{ nameMaster }}
+          </button>
+          <div class="dropdown-menu" [ngClass]="{ show: isshowDropdownMaster }">
+            <a
+              class="dropdown-item"
+              (click)="
+                handleDropdownMasterClick(data.masterId, data.masterName)
+              "
+              *ngFor="let data of listMaster"
+              >{{ data.masterName }}</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page Title -->
+
+    <div class="content">
+      <h3 style="font-family: 'Nunito', sans-serif; font-size: 24px;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #012970;">Danh sách sinh viên bảo vệ thành công</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Mã Sinh Viên</th>
+            <th scope="col">Tên Sinh viên</th>
+            <th scope="col">Lớp</th>
+            <th scope="col">Tên đề tài tiếng Việt</th>
+            <th scope="col">Tên đề tài tiếng Anh</th>
+            <th scope="col">Điểm phản biện</th>
+            <th scope="col">Điểm hội đồng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of listMasterDetailSucces">
+            <td>{{ data.mssv }}</td>
+            <td>{{ data.studentName }}</td>
+            <td>{{ data.studentClass }}</td>
+            <td>{{ data.titleNameVn }}</td>
+            <td>{{ data.titleNameEn }}</td>
+            <td>{{ data.scoreArgument }}</td>
+            <td>{{ data.scoreCoucil }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="content">
+      <h3 style="font-family: 'Nunito', sans-serif; font-size: 24px;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #012970;">Danh sách sinh viên bảo vệ không qua</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Mã Sinh Viên</th>
+            <th scope="col">Tên Sinh viên</th>
+            <th scope="col">Lớp</th>
+            <th scope="col">Tên đề tài tiếng Việt</th>
+            <th scope="col">Tên đề tài tiếng Anh</th>
+            <th scope="col">Điểm phản biện</th>
+            <th scope="col">Điểm hội đồng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of listMasterDetailNoSucces">
+            <td>{{ data.mssv }}</td>
+            <td>{{ data.studentName }}</td>
+            <td>{{ data.studentClass }}</td>
+            <td>{{ data.titleNameVn }}</td>
+            <td>{{ data.titleNameEn }}</td>
+            <td>{{ data.scoreArgument }}</td>
+            <td>{{ data.scoreCoucil }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <!-- End #main -->
+</div>
+<app-footer></app-footer>

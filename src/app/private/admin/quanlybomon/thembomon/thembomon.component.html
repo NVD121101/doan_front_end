@@ -1,0 +1,143 @@
+<app-hearder></app-hearder>
+<div class="menu-main">
+  <app-menu></app-menu>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <div>
+        <h1>{{subjectId != null ? 'Sửa' : 'Thêm'}} bộ môn</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Admin</a></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!-- End Page Title -->
+    <div class="page-content"  *ngIf="subjectId == null">
+      <div class="form-v5-content">
+        <form class="form-detail" [formGroup]="addsubjectFrom">
+          <h2>Thêm mới bộ môn</h2>
+          <div class="form-row">
+            <label for="full-name">Tên bộ môn</label>
+            <input
+              type="text"
+              name="full-name"
+              id="full-name"
+              class="input-text"
+              formControlName="subjectName"
+              required
+            />
+            <i class="fas fa-user"></i>
+          </div>
+        </form>
+        <form class="form-detail" [formGroup]="adduserForm">
+          <div class="form-row">
+            <label for="your-email">Username</label>
+            <input
+              type="email"
+              name="your-email"
+              id="your-email"
+              class="input-text"
+              required
+              pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
+              formControlName = 'username'
+            />
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="input-text"
+              required
+              formControlName = 'password'
+            />
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="form-row-last">
+            <input
+              type="submit"
+              name="register"
+              class="register"
+              value="Register"
+              (click)="addEditSubject()"
+            />
+          </div>
+          <div class="error-message">{{message}}</div>
+        </form>
+      </div>
+    </div>
+    <div class="page-content"  *ngIf="subjectId != null">
+      <div class="form-v5-content">
+        <form class="form-detail" [formGroup]="editsubjectFrom">
+          <h2>Sửa bộ môn</h2>
+          <div class="form-row">
+            <label for="full-name">Tên bộ môn</label>
+            <input
+              type="text"
+              name="full-name"
+              id="full-name"
+              class="input-text"
+              formControlName="subjectName"
+              required
+            />
+            <i class="fas fa-user"></i>
+          </div>
+        </form>
+        <form class="form-detail" [formGroup]="edituserForm">
+          <div class="form-row">
+            <label for="your-email">Username</label>
+            <input
+              type="email"
+              name="your-email"
+              id="your-email"
+              class="input-text"
+              required
+              pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
+              formControlName = 'username'
+            />
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="input-text"
+              required
+              formControlName = 'password'
+            />
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="form-row">
+            <label for="password">New Password</label>
+            <input
+              type="password"
+              name="newpassword"
+              id="newpassword"
+              class="input-text"
+              required
+              formControlName = 'newPassword'
+            />
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="form-row-last">
+            <input
+              type="submit"
+              name="register"
+              class="register"
+              value="Register"
+              (click)="addEditSubject()"
+            />
+          </div>
+          <div class="error-message">{{message}}</div>
+        </form>
+      </div>
+    </div>
+  </main>
+  <!-- End #main -->
+</div>
+<app-footer></app-footer>

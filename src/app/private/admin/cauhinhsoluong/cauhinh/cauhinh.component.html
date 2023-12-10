@@ -1,0 +1,140 @@
+<app-hearder></app-hearder>
+<div class="menu-main">
+  <app-menu></app-menu>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <div>
+        <h1>
+          Cấu hình số lượng tối đa sinh viên hướng dẫn và phản biện
+        </h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Khoa</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="btn-group">
+        <div class="btn-group">
+          <h1 style="margin-top: 5px">Chọn bộ môn</h1>
+          <button
+            style="background: #4154f1; margin-left: 15px"
+            type="button"
+            class="btn btn-primary dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            (click)="showDropdown()"
+          >
+            {{ nameSubject }}
+          </button>
+          <div class="dropdown-menu" [ngClass]="{ show: isshowDropdown }">
+            <a
+              class="dropdown-item"
+              (click)="handleDropdownClick(data.subjectId, data.subjectName)"
+              *ngFor="let data of listSubjects"
+              >{{ data.subjectName }}</a
+            >
+          </div>
+        </div>
+        <div class="btn-group" style="margin-left: 200px;">
+          <input
+            type="text"
+            [(ngModel)]="valueInputSearch"
+            class="form-control input-search"
+            placeholder="Tìm kiếm tên giảng viên"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+          />
+          <div class="input-group-append">
+            <button style="background: #4154f1; margin-left: 10px;" class="btn btn-primary" type="button" (click)="handleSearch()">
+              Tìm kiếm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page Title -->
+
+    <div class="content">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Mã giảng viên</th>
+            <th scope="col">Tên giảng viên</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Giới tính</th>
+            <th scope="col">Hướng nghiên cứu</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of listTeachers">
+            <td>{{data.teacherId}}</td>
+            <td>{{data.teacherName}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.phone}}</td>
+            <td>{{data.sex}}</td>
+            <td>{{data.researchDirection}}</td>
+            <td><button type="button" class="btn btn-primary" style="background-color: #4154F1;" (click)="handleShowData(data.teacherId)">Cấu hình</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="popupContainer" class="popup-container" [ngClass]="isShowData ? 'show' : ''">
+        <div class="popup-content">
+          <div class="close-popup paging">
+            <button (click)="handleHidenData()"><i class="bi bi-x"></i></button>
+          </div>
+          <h2 class="text-center">Giảng viên: {{teacherNamePopup}}</h2>
+          <div class="page-content">
+            <div class="form-v5-content">
+              <form class="form-detail" [formGroup]="editTeacherFrom">
+                <h2>Cấu hình</h2>
+                <div class="form-row">
+                  <label for="full-name">Số lượng sinh viên hướng dẫn</label>
+                  <input
+                    type="number"
+                    name="full-name"
+                    id="full-name"
+                    class="input-text"
+                    formControlName="maxStudentsHD"
+                    required
+                  />
+                  <i class="fas fa-user"></i>
+                  <label for="full-name">Số lượng sinh viên phản biện</label>
+                  <input
+                    type="number"
+                    name="full-name"
+                    id="full-name"
+                    class="input-text"
+                    formControlName="maxStudentsPB"
+                    required
+                  />
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="form-row-last">
+                    <input
+                      type="submit"
+                      name="register"
+                      class="register"
+                      value="Register"
+                      (click)="handleSubmit()"
+                    />
+                  </div>
+                  <div class="error-message">{{message}}</div>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="paging" *ngIf="isPaging">
+        <button (click)="goToPage(pageCurr - 1)" [disabled]="isLeft"><i class="bi bi-caret-left"></i></button>
+        <button *ngFor="let page of pagesArray()" (click)="goToPage(page)" [ngClass]="pageCurr === page ? 'active-page' : ''">{{ page }}</button>
+        <button (click)="goToPage(pageCurr + 1)" [disabled]="isRight"><i class="bi bi-caret-right"></i></button>
+      </div>
+    </div>
+  </main>
+  <!-- End #main -->
+</div>
+<app-footer></app-footer>

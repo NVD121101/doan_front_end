@@ -1,0 +1,5 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Đảm bảo footer ở phía dưới khi trang không đủ chiều cao */
+  }

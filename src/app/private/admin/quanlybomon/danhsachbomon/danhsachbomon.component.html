@@ -1,0 +1,42 @@
+<app-hearder></app-hearder>
+<div class="menu-main">
+  <app-menu></app-menu>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <div>
+        <h1>Danh sách bộ môn</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a>Admin</a></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!-- End Page Title -->
+
+    <div class="content">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Mã bộ môn</th>
+            <th scope="col">Tên bộ môn</th>
+            <th scope="col">Username</th>
+            <th scope="col">Khoa</th>
+            <th *ngIf="isAdmin" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subject of listSubjects">
+            <td>{{ subject.subjectId }}</td>
+            <td>{{ subject.subjectName }}</td>
+            <td>{{ subject.user.username }}</td>
+            <td>Công nghệ thông tin</td>
+            <td *ngIf="isAdmin"><button type="button" class="btn btn-primary" style="background-color: #4154F1;" (click)="handleEditSubject(subject.subjectId)">Sửa bộ môn</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <!-- End #main -->
+</div>
+<app-footer></app-footer>

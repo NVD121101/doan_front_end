@@ -1,0 +1,63 @@
+<app-hearder></app-hearder>
+<div class="menu-main">
+  <app-menu></app-menu>
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Quản lý đồ án tốt nghiệp</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a>Khoa</a></li>
+        </ol>
+      </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row main-container">
+            <!-- Revenue Card -->
+            <div class="" routerLink="/danhsachbomon">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Tống số bộ môn</h5>
+                  <div class="d-flex align-items-center">
+                    <div
+                      class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                    >
+                    <a class="quanlygiaodetai"><img src="../../../assets/image/quanlyhoidong.jpg" alt="quanlyhoidong"></a>
+                    </div>
+                    <div class="ps-3">
+                      <h6> {{totalSubjects}} bộ môn</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="" routerLink="/danhsachgiangvien">
+              <div class="card info-card revenue-card">
+                <div class="card-body">
+                  <h5 class="card-title">Tống số giảng viên</h5>
+                  <div class="d-flex align-items-center">
+                    <div
+                      class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                    >
+                    <a class="quanlygiaodetai"><img src="../../../../assets/image/icon_teacher.jpg" alt="quanlyhoidong"></a>
+                    </div>
+                    <div class="ps-3">
+                      <h6> {{totalTeachers}} giảng viên</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+        <!-- End Left side columns -->
+      </div>
+    </section>
+  </main>
+  <!-- End #main -->
+</div>
+<app-footer></app-footer>
